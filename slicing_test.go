@@ -10,6 +10,11 @@ import (
 )
 
 func TestRepeatSlice(t *testing.T) {
+	t.Run("count is 0", func(t *testing.T) {
+		n := RepeatSlice("Go", 0)
+		xt.Eq(t, 0, len(n))
+	})
+
 	t.Run("create slice with 100 elements", func(t *testing.T) {
 		exp := 100
 		n := RepeatSlice("Go", exp)

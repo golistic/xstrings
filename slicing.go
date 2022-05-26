@@ -5,6 +5,7 @@ package xstrings
 import "strings"
 
 // RepeatSlice returns a []string consisting of count copies of the string s.
+// When count is zero, empty slice is returned.
 // Panics when count is out of range when making slice.
 func RepeatSlice(s string, count int) []string {
 	if count == 0 {
