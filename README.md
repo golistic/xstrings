@@ -1,12 +1,12 @@
-xconv - Conversions
-===================
+xstrings - Extra String Functionality
+=====================================
 
 Copyright (c) 2022, Geert JM Vanderkelen
 
-`xstrings` is a collection of functionality dealing the Go `string` type.  
+`xstrings` implements extra functionality manipulating UTF-8 encoded strings.
 It extends whatever is provided by the [standard Go library][1], contains
-no magic, and probably does offer not more what can be found in various other
-projects.
+no magic, and probably does offer not more than what can be found in various 
+other projects.
 
 License
 -------
