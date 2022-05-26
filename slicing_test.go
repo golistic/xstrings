@@ -29,3 +29,35 @@ func TestRepeatSlice(t *testing.T) {
 		})
 	})
 }
+
+func TestRepeatJoin(t *testing.T) {
+	t.Run("count is 0", func(t *testing.T) {
+		exp := ""
+		s := RepeatJoin("Go", 0, ",")
+		xt.Eq(t, exp, s)
+	})
+
+	t.Run("count is 1", func(t *testing.T) {
+		exp := "Go"
+		s := RepeatJoin("Go", 1, ",")
+		xt.Eq(t, exp, s)
+	})
+
+	t.Run("repeat 10 times and join with single character", func(t *testing.T) {
+		exp := "?,?,?,?,?,?,?,?,?,?"
+		s := RepeatJoin("?", 10, ",")
+		xt.Eq(t, exp, s)
+	})
+
+	t.Run("repeat 10 times and join with multi character", func(t *testing.T) {
+		exp := "Go;;Go;;Go;;Go;;Go;;Go;;Go;;Go;;Go;;Go"
+		s := RepeatJoin("Go", 10, ";;")
+		xt.Eq(t, exp, s)
+	})
+
+	t.Run("negative count panics", func(t *testing.T) {
+		xt.Panics(t, func() {
+			_ = RepeatJoin("Go", -1, ";")
+		})
+	})
+}
