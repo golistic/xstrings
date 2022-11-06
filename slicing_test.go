@@ -9,6 +9,8 @@ import (
 	"github.com/geertjanvdk/xkit/xt"
 )
 
+type StringTyped string
+
 func TestRepeatSlice(t *testing.T) {
 	t.Run("count is 0", func(t *testing.T) {
 		n := RepeatSlice("Go", 0)
@@ -64,5 +66,37 @@ func TestRepeatJoin(t *testing.T) {
 		xt.Panics(t, func() {
 			_ = RepeatJoin("Go", -1, ";")
 		})
+	})
+}
+
+func TestJoin(t *testing.T) {
+	t.Run("zero string elements", func(t *testing.T) {
+		exp := ""
+		xt.Eq(t, exp, Join([]string{}, ","))
+	})
+
+	t.Run("1 string element", func(t *testing.T) {
+		exp := "first"
+		xt.Eq(t, exp, Join([]string{"first"}, ","))
+	})
+
+	t.Run("multiple string elements", func(t *testing.T) {
+		exp := "first,second,third"
+		xt.Eq(t, exp, Join([]string{"first", "second", "third"}, ","))
+	})
+
+	t.Run("zero string type elements", func(t *testing.T) {
+		exp := ""
+		xt.Eq(t, exp, Join([]StringTyped{}, ","))
+	})
+
+	t.Run("1 string type element", func(t *testing.T) {
+		exp := "first"
+		xt.Eq(t, exp, Join([]StringTyped{"first"}, ";"))
+	})
+
+	t.Run("multiple string type elements", func(t *testing.T) {
+		exp := "first;second;third"
+		xt.Eq(t, exp, Join([]StringTyped{"first", "second", "third"}, ";"))
 	})
 }
