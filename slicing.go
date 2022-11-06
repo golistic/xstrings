@@ -47,3 +47,29 @@ func RepeatJoin[T ~string](s T, count int, sep string) string {
 
 	return b.String()
 }
+
+// Join concatenates the elements of its first argument to create a single string.
+// The separator string sep is placed between elements in the resulting string.
+//
+// This is a copy of Go's strings.Join but uses generic type for the elements.
+func Join[T ~string](elems []T, sep string) string {
+	switch len(elems) {
+	case 0:
+		return ""
+	case 1:
+		return string(elems[0])
+	}
+	n := len(sep) * (len(elems) - 1)
+	for i := 0; i < len(elems); i++ {
+		n += len(elems[i])
+	}
+
+	var b strings.Builder
+	b.Grow(n)
+	b.WriteString(string(elems[0]))
+	for _, s := range elems[1:] {
+		b.WriteString(sep)
+		b.WriteString(string(s))
+	}
+	return b.String()
+}
