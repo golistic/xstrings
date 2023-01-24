@@ -1,0 +1,14 @@
+xos:
+  - meta:
+      projectURL: https://github.com/golistic/xstrings
+      description: |
+        All notable changes to this project will be documented in this file.
+        Note: Using YAML is experimental, but since it is human readable, should be OK.
+  - versions:
+      - version: v1.1.0
+        date: 2023-01-24
+        added:
+          - Add Pointer() to return string as pointer.
+      - version: v1.0.0
+        date: 2022-11-06
+        description: Initial release.
